@@ -1,0 +1,65 @@
+% !TEX root = ../main.tex
+%
+% ------------------------------------  --> cover title page
+
+\newcommand{\jurymember}[5]{\hspace{1.5em}\textbf{{#1} \textsc{{#2}}}, {#3}, {#4} \hfill \textit{{#5}}\\}
+
+\newgeometry{left=2.8cm, right=2.5cm, top=2cm, bottom=2cm}
+\begin{titlepage}
+	\pdfbookmark[0]{Cover}{Cover}
+	\begin{flushleft}
+      \includegraphics[height=1.7cm]{figures/sorbonne.pdf}
+      \hfill
+	  % TODO: replace with your Lab logo
+      \includegraphics[height=1.7cm]{figures/LogoLIP6.pdf}
+      \hfill
+	  % TODO: replace with your Team logo
+      \includegraphics[height=1.7cm]{figures/inria.pdf}
+	  % TODO: you may add your company logo if you are a CIFRE PhD Student
+	  % \hfill
+      % \includegraphics[height=1.7cm]{figures/cifre-logo.pdf}
+	\end{flushleft}
+	\vfill
+	\begin{center}
+        \vspace{1em}
+        {\large Thèse présentée pour l'obtention du grade de}\\
+        \vspace{1em}
+        {\LARGE DOCTEUR de SORBONNE UNIVERSITÉ}\\
+        \vspace{2em}
+		{\small Spécialité}\\
+		\vspace{0.5em}
+		% TODO: specialty of the doctoral school, this is the one that will appear in the diploma
+		{\Large Ingénierie / Systèmes Informatiques}\\
+		\vspace{2em}
+        {\large École doctorale}\\
+		\vspace{0.5em}
+		{\Large Informatique, Télécommunication et Électronique Paris (ED130)}\\
+    \end{center}
+	\vfill
+	\begin{flushright}
+	\hfill
+	\vfill
+	{\LARGE\thesisTitle \par}
+	\rule[5pt]{\textwidth}{.4pt} \par
+	{\Large\thesisName}
+	\vfill
+	\end{flushright}
+	%% TODO: If final version:
+	Soutenue publiquement le : \textit{\large\thesisDate}
+	%% Else, for review version:
+	% Version: \thesisVersion
+	\begin{flushleft}
+		Devant un jury composé de :\\
+		% TODO: jury members should follow two orders:
+		%% 1- Role: Reviewer -> Jury -> Guest -> Advisor
+		%% 2- For each role, alphabetical order
+		\jurymember{Prénom}{Nom}{Poste}{Université}{Role dans le jury}
+		\jurymember{Jean-Michel}{Dupont}{Professeur}{Sorbonne Université}{Rapporteur}
+		\jurymember{Alice}{Dupont}{Directrice de Recherche}{CNRS}{Examinatrice}
+		\jurymember{Jean-Michel}{Dupont}{Professeur}{Sorbonne Université}{Examinateur}
+		\jurymember{Pierre}{AAA}{Maître de conférences}{UPMC}{Examinateur}
+		\jurymember{Patrice}{Balkany}{Software Engineer}{Google}{Invité}
+		\jurymember{Jean-Michel}{Encadrant}{Directeur de Recherche}{Sorbonne Université, LIP6}{Directeur de thèse}
+	\end{flushleft}
+\end{titlepage}
+\restoregeometry

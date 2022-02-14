@@ -1,0 +1,253 @@
+% !TEX root = main.tex
+
+
+% **************************************************
+% Files' Character Encoding
+% **************************************************
+\PassOptionsToPackage{utf8}{inputenc}
+\usepackage{inputenc}
+
+% **************************************************
+% PDF annotation
+% **************************************************
+\usepackage[author={Auteur1}]{pdfcomment}
+\newcommand{\chl}[2]{\pdfmarkupcomment[markup=Highlight, color=red!20]{#1}{#2}}
+
+%%% Main Env %%%
+\newcommand{\system}{\textsc{These2Ouf}}
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\thesisTitle}{\system{}: A cleanthesis fork adapted to Sorbonne Université rules}
+
+\newcommand{\thesisName}{Ilyas Toumlilt}
+\newcommand{\thesisSubject}{Distributed Systems}
+
+\newcommand{\thesisDate}{21 Décembre 2021}
+\newcommand{\thesisVersion}{Review Version}
+
+\newcommand{\thesisFirstReviewer}{Reviewer1 Name}
+\newcommand{\thesisFirstReviewerUniversity}{\protect{Université Paris-Sorbonne}}
+%\newcommand{\thesisFirstReviewerDepartment}{Department of Clean Thesis Style}
+
+\newcommand{\thesisSecondReviewer}{Reviewer2 Name}
+\newcommand{\thesisSecondReviewerUniversity}{\protect{Université Pierre et Marie Curie}}
+%\newcommand{\thesisSecondReviewerDepartment}{Department of Clean Thesis Style}
+
+\newcommand{\thesisFirstSupervisor}{Jean-Mich Directeur}
+\newcommand{\thesisSecondSupervisor}{Jean-Mich Encadrant}
+
+\newcommand{\thesisUniversity}{\protect{Sorbonne Université}}
+\newcommand{\thesisUniversityDepartment}{Laboratoire d'Informatique de Paris 6 and Inria}
+%\newcommand{\thesisUniversityInstitute}{Institute for Clean Thesis Dev}
+\newcommand{\thesisUniversityGroup}{DELYS team}
+\newcommand{\thesisUniversityCity}{Paris}
+%\newcommand{\thesisUniversityStreetAddress}{Street address}
+%\newcommand{\thesisUniversityPostalCode}{Postal Code}
+
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+
+% **************************************************
+% Other Packages
+% **************************************************
+\usepackage{morewrites}
+\usepackage[pass]{geometry}
+\usepackage{scrhack}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{shapes.misc, shapes.geometric, positioning, arrows.meta, calc, arrows}
+%\usepackage{xcolor}
+% I'm not using glossaries, so I commented both next lines
+% \usepackage[nopostdot,toc,acronym]{glossaries}
+% \makeglossaries
+\usepackage{import}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+\usepackage{colortbl}
+\usepackage{placeins}[section, below]
+\usepackage{hyperref}
+\usepackage{macros}
+\usepackage[defblank]{paralist}  %% inline lists
+\usepackage[inline,shortlabels]{enumitem} % must come just after paralist!
+\usepackage{wrapfig}
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+% cSpell: disable
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\PassOptionsToPackage{% setup clean thesis style
+    figuresep=colon,%
+    hangfigurecaption=false,%
+    hangsection=true,%
+    hangsubsection=true,%
+    sansserif=false,%
+    configurelistings=true,%
+    colorize=full,%
+%    colorize=bw,%
+    colortheme=bluemagenta,%
+    configurebiblatex=true,%
+    bibsys=bibtex,%
+    bibfile=main,%
+    bibstyle=alphabetic,%
+    bibsorting=nty,%
+}{cleanthesis}
+\usepackage{cleanthesis}
+
+\hypersetup{% setup the hyperref-package options
+    pdftitle={\thesisTitle},    %   - title (PDF meta)
+    pdfsubject={\thesisSubject},%   - subject (PDF meta)
+    pdfauthor={\thesisName},    %   - author (PDF meta)
+    plainpages=false,           %   -
+    colorlinks=false,           %   - colorize links?
+    pdfborder={0 0 0},          %   -
+    breaklinks=true,            %   - allow line break inside links
+    bookmarksnumbered=true,     %
+    bookmarksopen=true          %
+}
+
+% Nicer color
+\definecolor{red}{HTML}{9B0000}
+\definecolor{lightred}{HTML}{FF5131}
+\definecolor{green}{HTML}{1FAA00}
+\definecolor{lightgreen}{HTML}{9CFF57}
+\definecolor{purple}{HTML}{7200CA}
+\definecolor{blue}{HTML}{0064B7}
+\definecolor{verylightgrey}{HTML}{F1F1F1}
+\colorlet{ctcolorfootertitlelight}{ctcolorfootertitle!20}
+
+\lstdefinelanguage{diff}{
+% basicstyle=\ttfamily\bfseries\footnotesize,
+  morecomment=[f][\color{blue}]{@},
+  morecomment=[f][\color{green}]{+},
+  morecomment=[f][\color{red}]{-},
+  keepspaces=true,
+  identifierstyle=\color{black},
+}
+
+\lstdefinelanguage{spdiff}{
+% basicstyle=\ttfamily\bfseries\footnotesize,
+  morecomment=[s][\color{blue}]{@@}{@@},
+  morecomment=[s][\color{blue}]{@rule1@}{@@},
+  morecomment=[s][\color{blue}]{@rule2@}{@@},
+  morecomment=[f][\color{green}]{+},
+  morecomment=[f][\color{red}]{-},
+  morekeywords={expression},
+  morekeywords={identifier},
+  keepspaces=true,
+  identifierstyle=\color{black},
+}
+
+\newtcolorbox{notice}[1][]{enhanced,
+  before skip=3mm,after skip=7mm,
+  boxrule=0pt,left=7mm,right=2mm,top=1mm,bottom=1mm,
+  colback=ctcolorfootertitlelight,
+  sharp corners,
+  frame hidden,
+  underlay={%
+    \path[fill=ctcolorfootertitle,draw=none] (interior.south west) rectangle node[white]{\huge\bfseries !} ([xshift=6mm]interior.north west);
+    },
+  #1}
+
+
+\newtcblisting{namedlisting}[2][]{%
+  enhanced,
+  sharp corners,
+  frame hidden,
+  boxsep=0pt,
+  title={\hspace*{3.5mm}#2},
+  titlerule=0pt,
+  colbacktitle=ctcolormain!20,
+  coltitle=black,
+  toptitle=1mm,
+  bottomtitle=1mm,
+  listing only,
+  left=0pt,
+  top=0pt,
+  bottom=0pt,
+  right=0pt,
+  toprule=0pt,
+  leftrule=0pt,
+  bottomrule=0pt,
+  rightrule=0pt,
+  colframe=ctcolormain,
+  listing options={aboveskip=0pt, belowskip=0pt, #1},
+}
+
+\tikzset{%
+  >=latex,
+  edge/.style={
+    ->,
+    rounded corners=3pt
+  },
+  node/.style={%
+    rectangle,
+    rounded corners=1pt,
+    draw,
+    thick,
+    fill=ctcolorgraylighter,
+    minimum height=1.5em,
+  },
+  empty/.style={%
+    minimum height=0,
+  },
+  removed/.style={
+    text=red,
+    draw=red,
+  },
+  added/.style={
+    text=green,
+    draw=green,
+  },
+  fake/.style={
+    densely dotted,
+    text=ctcolorgray,
+  },
+  special/.style={
+    trapezium,
+    trapezium left angle=60,
+    trapezium right angle=120,
+    minimum width=2cm,
+  },
+  entry port/.style={
+    alias=this,
+    append after command={%
+      \pgfextra
+        \draw[-(, thick] (this) -- ($(this.north) + (0, 0.25)$);
+      \endpgfextra
+    },
+  },
+  exit port/.style={
+    alias=this,
+    append after command={%
+      \pgfextra
+        \draw[-o, thick] (this) -- ($(this.south) + (0, -0.35)$);
+      \endpgfextra
+    },
+  },
+}
+% cSpell: enable
+
+% ***********
+% Here you can add your own commands 
+% ***********
+\newcommand{\etal}{\textit{et al.}}
+
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\hlcell}[1]{\cellcolor{ctcolorfootertitle} \textcolor{white}{\textbf{#1}}}
+\newcommand{\hlrow}{\rowcolor{ctcolorfootertitle} \color{white} \bfseries}
+
+\renewcommand{\arraystretch}{1.2} % fat table
+
+\newcommand{\bfemph}[1]{\textbf{\textit{#1}}}

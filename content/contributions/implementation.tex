@@ -1,0 +1,27 @@
+% !TEX root = ../../main.tex
+
+TBD
+
+\section{Example of code input}
+
+\begin{figure}[th]
+  \lstinputlisting[style=typescript,linerange={8-25}, xleftmargin=3em]{docs/typescript/src/api.ts}
+  \caption{
+    \labfigure{api}
+    An example of \system{} program.
+  }
+\end{figure}
+
+The TypeScript example in \reffigure{api} illustrates the API.
+This application opens a session (Line~1).
+Then, it creates and increments a CRDT counter object (Lines~2--5).
+Then it connects to a peer group (line~7), and updates the grow-only map
+(gmap) \code{{\color{RoyalPurple}{``myMap''}}} in a transaction
+(lines~8--12).
+This map contains references to a register object (key
+\code{{\color{RoyalPurple}{``a''}}}) and a set object (key
+\code{{\color{RoyalPurple}{``e''}}}).
+The counter update and the commit are both asynchronous 
+(Lines~9 and~13), returning a promise.
+At line~13, the client waits for the promise, and displays the content
+of the set.

@@ -1,0 +1,92 @@
+\newenvironment{inv}[1]{\paragraph{#1}}{}
+
+% interface
+\newcommand{\vis}{\ensuremath{\stackrel{\mathit{vis}}{\rightarrow}}}
+\newcommand{\ar}{\ensuremath{\stackrel{\mathit{ar}}{\rightarrow}}}
+\newcommand{\happenedbefore}{\ensuremath{\prec}}
+\newcommand{\visible}[2]{\ensuremath{#1\stackrel{\mathit{vis}}{\rightarrow}#2}}
+
+%%% Custom labels %%%
+
+% create a custom label.  Usage: \Label{foobar}{22} ==> \ref{foobar} is 22.
+% This requires the hyperref package.  Otherwise the syntax is the
+% following:
+%  \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{}}}}
+\newcommand{\labelevent}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+%   \hypertarget{#1}{#2}
+}
+\newcommand{\refevent}[1]{\textcircled{\ref{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Data consistency
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Histories
+\newcommand{\resp}{\ensuremath{\mathsf{res}}}
+
+% Happens-before
+\newcommand{\hb}{\ensuremath{\prec}}
+\newcommand{\hbeq}{\ensuremath{\preceq}}
+
+% consistency models
+\newcommand{\tccp}{\ensuremath{\text{TCC+}}}
+\newcommand{\cc}{\ensuremath{\text{CC}}}
+
+% experiments
+\newcommand{\speedup}[1]{\ensuremath{\text{#1\textsf{x}}}}
+\newcommand{\ops}[1]{\ensuremath{\text{#1~\text{ops/s}}}}
+\newcommand{\kops}[1]{\ensuremath{\text{#1\text{K~ops/s}}}}
+\newcommand{\mops}[1]{\ensuremath{\text{#1\text{M~ops/s}}}}
+
+%%% Format %%%
+\newcommand{\labfigure}[1]{\label{fig:#1}}
+\newcommand{\reffigure}[1]{Figure~\ref{fig:#1}}
+\newcommand{\reffiguretwo}[2]{Figures~\ref{fig:#1}~and~\ref{fig:#2}}
+\newcommand{\code}[1]{\ensuremath{\text{\texttt{#1}}}}
+
+%%% Code Format %%%
+% Algorithms
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage{algorithm}
+
+\newcommand\commfont[1]{\textrm{#1}}
+
+\makeatletter
+\newcommand{\removelatexerror}{\let\@latex@error\@gobble}
+\makeatother
+
+% Font type for listings and figures
+%\usepackage[protrusion=true,expansion=true]{microtype}
+% \usepackage{pifont}
+\newcommand\SmallLST{\fontsize{10}{10.5}\selectfont}
+\newcommand*\LSTfont{\SmallLST\ttfamily\SetTracking{encoding=*}{-60}\lsstyle}
+
+% Code listing
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\usepackage{listings}
+\definecolor{main-color}{rgb}{0.6627, 0.7176, 0.7764}
+\definecolor{back-color}{rgb}{0.1686, 0.1686, 0.1686}
+\definecolor{string-color}{rgb}{0.3333, 0.5254, 0.345}
+\definecolor{key-color}{rgb}{0.8, 0.47, 0.196}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstdefinestyle{typescript}
+{
+  emph={register,gmap,set,counter},
+  emphstyle=\color{RoyalBlue},
+  keywordstyle = {\color{key-color}},
+  otherkeywords = {let,then,await},
+  numbers=left,
+  xleftmargin=2.5em,
+  stringstyle=\color{RoyalPurple}, 
+  basicstyle=\LSTfont,
+  language=java,
+  columns=fullflexible,
+  frame=tb,
+  captionpos=b,
+  showstringspaces=false,
+  % mathescape=true,
+  tabsize=4
+}

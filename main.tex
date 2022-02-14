@@ -1,0 +1,143 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+% **************************************************
+% Document Class Definition
+% **************************************************
+\documentclass[%
+    paper=A4,               % paper size --> A4 is default in Germany
+    twoside=true,           % onesite or twoside printing
+    openright,              % doublepage cleaning ends up right side
+    parskip=half,           % spacing value / method for paragraphs
+    chapterprefix=true,     % prefix for chapter marks
+    11pt,                   % font size
+    headings=normal,        % size of headings
+    bibliography=totoc,     % include bib in toc
+    listof=totoc,           % include listof entries in toc
+    titlepage=on,           % own page for each title page
+    captions=tableabove,    % display table captions above the float env
+    chapterprefix=false,    % do not display a prefix for chapters
+    appendixprefix=false,   % but display a prefix for appendix chapter
+    draft=false,            % value for draft version
+]{scrreprt}%
+
+% **************************************************
+% Setup YOUR thesis document in this file !
+% **************************************************
+\input{setup}
+
+% **************************************************
+% Document CONTENT
+% **************************************************
+\begin{document}
+
+% uncomment the following command to fill up pages with
+% whitespace instead of aligning the first and last lines
+% of a page (see \raggedbottom vs. \flushbottom)
+%\raggedbottom
+
+% --------------------------
+% rename document parts
+% --------------------------
+
+% > set short label names for floating environments figure and table
+\renewcaptionname{english}{\figurename}{Fig.}
+\renewcaptionname{english}{\tablename}{Tab.}
+
+% > rename the title of the LOL, i.e. list of listings (default is "Listings")
+\renewcommand*{\lstlistlistingname}{List of Listings}
+
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
+%% Uncomment below commands if you want the arabic numbering to include Front pages
+%% This is only useful if you are a literature student.
+% \pagestyle{empty}				% no header or footers
+% \pagenumbering{arabic}			% arabic page numbering
+% \setcounter{page}{1}			% set page counter
+
+\input{content/front/titlepages} % INCLUDE: all titlepages
+\clearpage
+\input{content/front/copyright.tex} % INCLUDE: Sorbonne Univ Thesis Copyright
+\cleardoublepage
+
+\pagestyle{plain}				% display just page numbers
+%
+\input{content/front/remerciements.tex} % INCLUDE: acknowledgement
+\cleardoublepage
+%
+\input{content/front/abstract-en}	% INCLUDE: the abstracts (english)
+\clearpage
+\input{content/front/abstract-fr}	% INCLUDE: the abstracts (french)
+\cleardoublepage
+%
+\currentpdfbookmark{\contentsname}{toc}
+\setcounter{tocdepth}{2}		% define depth of toc
+\tableofcontents				% display table of contents
+\cleardoublepage
+
+% --------------------------
+% Body matter
+% --------------------------
+\pagestyle{empty}				% no header or footers
+\pagenumbering{arabic}			% arabic page numbering starts from Body
+\pagestyle{scrheadings}			% header and footer style
+
+%% Uncomment the following lines using the \part command
+%% to add part sections
+\input{content/introduction}   % INCLUDE: introduction
+
+\part{Background}
+\label{part:background}
+\import{content/soa}{soa}
+
+\part{Contributions}
+\label{part:contributions}
+\import{content/contributions}{contributions}
+
+\part{Experimental Evaluation}
+\label{part:evaluation}
+\import{content/evaluation}{evaluation}
+
+\part{Conclusion}
+\label{part:conclusion}
+\input{content/conclusion} 
+
+% --------------------------
+% Back matter
+% --------------------------
+%
+{%
+\setstretch{1.1}
+\renewcommand{\bibfont}{\normalfont\small}
+\setlength{\biblabelsep}{0pt}
+\setlength{\bibitemsep}{0.5\baselineskip plus 0.5\baselineskip}
+\printbibliography[nottype=online]
+\newrefcontext[labelprefix={@}]
+\printbibliography[heading=subbibliography,title={Webpages},type=online]
+}
+\cleardoublepage
+
+% \input{content/glossary}
+
+\listoffigures
+\cleardoublepage
+
+\listoftables
+\cleardoublepage
+
+\lstlistoflistings
+\cleardoublepage
+
+\appendix
+\input{appendix/resume-fr.tex}
+\cleardoublepage
+
+\clearpage
+
+\newpage
+\mbox{}
+
+% **************************************************
+% End of Document CONTENT
+% **************************************************
+\end{document}
